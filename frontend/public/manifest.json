@@ -1,0 +1,11 @@
+{
+  "name": "Hello world",
+  "version": "1.0.0",
+  "description": "my first hwllo world app",
+  "manifest_version": 3,
+  "author": "Sidharth babu",
+  "action":{
+    "default_popup": "index.html",
+    "default_title": "Latest Covid Report"
+  }
+}
