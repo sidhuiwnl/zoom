@@ -1,10 +1,29 @@
 import ws from "ws";
-import fs from "fs";
+import express from "express";
+import cors from "cors";
+import * as http from "node:http";
+import {createRouteHandler} from "uploadthing/express";
+import { uploadRouter } from "./uploadthing";
+import { UTApi } from "uploadthing/server";
 
 
 
+const app = express();
+app.use(
+    "/api/uploadthing",
+    createRouteHandler({
+        router: uploadRouter,
+    }),
+);
+app.use(cors());
 
-const wss = new ws.Server({ port: 8080 });
+
+
+const server = http.createServer(app);
+
+const wss = new ws.Server({server });
+
+const utapi = new UTApi();
 
 const videoChunks : Buffer[] = [];
 
@@ -18,21 +37,26 @@ wss.on("connection", (socket) => {
     })
 
 
-    socket.on("close", () => {
+    socket.on("close",  async() => {
         console.log("Client disconnected");
 
         if(videoChunks.length > 0){
             const videoBuffer = Buffer.concat(videoChunks);
 
-            const filePath = "output.webm"
-            fs.writeFile(filePath,videoBuffer,(err) =>{
-                if (err) {
-                    console.error("Error saving video file:", err);
-                } else {
-                    console.log(`Video saved to ${filePath}`);
-                    socket.close();
-                }
-            })
+            try {
+                const videoBlob = new Blob([videoBuffer], {
+                    type : "video/webm"
+                })
+
+                const videoFile = new File([videoBlob], "output.webm", {
+                    type: "video/webm",
+                });
+                const response = await utapi.uploadFiles([videoFile])
+                console.log("Uploaded file details:", response);
+            }catch (error){
+                console.error("Error uploading video:", error);
+            }
+
         }
 
     });
@@ -43,4 +67,8 @@ wss.on("connection", (socket) => {
     });
 });
 
-console.log("WebSocket server running on ws://127.0.0.1:8080");
+
+
+server.listen(8080,() =>{
+    console.log("WebSocket server running on port 8080");
+})
