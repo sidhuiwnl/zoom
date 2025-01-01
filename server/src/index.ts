@@ -5,7 +5,9 @@ import * as http from "node:http";
 import {createRouteHandler} from "uploadthing/express";
 import { uploadRouter } from "./uploadthing";
 import { UTApi } from "uploadthing/server";
+import dotenv from "dotenv";
 
+dotenv.config();
 
 
 const app = express();
@@ -13,6 +15,9 @@ app.use(
     "/api/uploadthing",
     createRouteHandler({
         router: uploadRouter,
+        config : {
+            token : process.env.UPLOADTHING_TOKEN
+        }
     }),
 );
 app.use(cors());
@@ -53,6 +58,7 @@ wss.on("connection", (socket) => {
                 });
                 const response = await utapi.uploadFiles([videoFile])
                 console.log("Uploaded file details:", response);
+                socket.close()
             }catch (error){
                 console.error("Error uploading video:", error);
             }

@@ -1,11 +1,15 @@
 {
-  "name": "Hello world",
+  "name": "Surge",
   "version": "1.0.0",
-  "description": "my first hwllo world app",
+  "description": "Meeting Bot ",
   "manifest_version": 3,
   "author": "Sidharth babu",
+  "icons" : {
+    "16": "./logo-1.png"
+  },
   "action":{
     "default_popup": "index.html",
-    "default_title": "Latest Covid Report"
+    "default_title": "The Meeting Bot "
   }
+
 }

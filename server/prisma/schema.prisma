@@ -66,10 +66,11 @@ model Verification {
 
 model Recordings{
   id      String   @id
-  video   Int     @db.Oid
+  video   String
   userId  String
   user    User   @relation(fields: [userId],references: [id],onDelete: Cascade)
 
+  @@index([video,userId])
 
 }
 
