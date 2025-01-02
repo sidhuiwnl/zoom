@@ -1,34 +1,19 @@
 
 
-function App() {
-    const handleSignIn = () => {
-        chrome.identity.getAuthToken({ interactive: true }, (token : any) => {
-            if (chrome.runtime.lastError) {
-                console.error("Sign-in failed:", chrome.runtime.lastError.message);
-                return;
-            }
+import { SignedIn, SignedOut, SignInButton } from "@clerk/clerk-react";
+import InputDemo from "./components/Input.tsx";
 
-            // Use the token to fetch user profile data
-            fetch("https://www.googleapis.com/oauth2/v2/userinfo", {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            })
-                .then((response) => response.json())
-                .then((data) => {
-                    console.log("User data:", data);
-                })
-                .catch((error) => {
-                    console.error("Error fetching user data:", error);
-                });
-        });
-    };
-
+export default function App() {
     return (
-        <div>
-            <button onClick={handleSignIn}>Sign in with Google</button>
-        </div>
+       <div className="roboto-medium w-[400px] h-[400px]">
+           <h1>Zoom</h1>
+            <SignedOut>
+                <SignInButton />
+            </SignedOut>
+            <SignedIn>
+                <h1>Hello</h1>
+                <InputDemo />
+            </SignedIn>
+       </div>
     );
 }
-
-export default App;

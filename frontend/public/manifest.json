@@ -12,12 +12,11 @@
     "default_title": "The Meeting Bot"
   },
   "permissions": ["identity"],
-  "oauth2": {
-    "client_id": "606708730687-m02g51ho827inlr5no0auaqsa9ebbdu7.apps.googleusercontent.com",
-    "scopes": ["profile", "email"]
-  },
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "service-worker.js"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'; connect-src 'self' https://apis.google.com https://www.gstatic.com https://www.googleapis.com https://securetoken.googleapis.com; frame-src 'self' chrome-extension://kmfdgmohgodaalpgciffncnalbbhiifp"
   }
 
 
