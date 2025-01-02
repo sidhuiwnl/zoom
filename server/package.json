@@ -10,6 +10,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@prisma/client": "^6.1.0",
     "@types/express": "^5.0.0",
     "@types/ws": "^8.5.13",
     "cors": "^2.8.5",

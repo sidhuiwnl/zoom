@@ -8,10 +8,7 @@
     font-style: normal;
 }
 
-#root{
-    background-color: black;
 
-}
 
 @layer base {
     :root {

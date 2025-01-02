@@ -65,11 +65,11 @@ model Verification {
 }
 
 model Recordings{
-  id      String   @id
-  video   String
-  userId  String
-  user    User   @relation(fields: [userId],references: [id],onDelete: Cascade)
-
+  id              String   @id
+  video           String
+  userId          String
+  user            User   @relation(fields: [userId],references: [id],onDelete: Cascade)
+  createdAt       DateTime
   @@index([video,userId])
 
 }
