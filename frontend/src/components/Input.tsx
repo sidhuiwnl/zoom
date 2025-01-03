@@ -2,9 +2,18 @@ import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { useState } from "react"
 import axios from "axios"
+import {useAuth} from "@clerk/clerk-react";
+import {redirect} from "react-router";
 
 export default function InputDemo() {
+    const { userId } = useAuth();
     const [link,setLink] = useState("");
+
+
+    if(!userId){
+        redirect("/")
+    }
+
 
     async function sendLink(){
         await axios.post("http://localhost:3000/getMeetId",{

@@ -1,8 +1,8 @@
-import { NavLink } from "react-router";
+import {NavLink} from "react-router";
 
 
 export default function HomeSection() {
-    return(
+    return (
         <div className="flex flex-col justify-between items-center py-20 space-y-7">
             <h1 className="text-7xl tracking-tight">The Meeting Bot You Need.</h1>
             <p className="text-neutral-300">Surge Bot let's you record the meeting and transcribe the Meet</p>
@@ -16,11 +16,11 @@ export default function HomeSection() {
 
 function VideoMonitor() {
     return (
-        <div className="w-[900px] h-[400px] object-cover rounded-xl shadow-xl bg-white">
+        <div className="w-[900px] h-[400px] object-cover rounded-xl shadow-md  shadow-neutral-600">
             <div className="w-full h-full">
                 {/*<video*/}
                 {/*    className="w-full h-full rounded-xl object-cover"*/}
-                {/*    src={rdr2}*/}
+                {/*    src={yotei}*/}
                 {/*    autoPlay*/}
                 {/*    loop={true}*/}
                 {/*    muted*/}
@@ -28,4 +28,6 @@ function VideoMonitor() {
             </div>
         </div>
     );
+
 }
+

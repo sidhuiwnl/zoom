@@ -14,63 +14,24 @@ datasource db {
 }
 
 model User {
-  id            String        @id
-  sessions      Session[]
-  name          String
-  email         String
-  emailVerified Boolean
-  image         String?
-  createdAt     DateTime
-  updatedAt     DateTime
-  account       Account[]
-  recordings    Recordings[]
+  id             String        @id
+  firstName      String
+  lastName       String
+  email          String
+  image          String
+  recordings     Recordings[]
   @@unique([email])
   @@map("user")
 }
 
-model Session {
-  id        String   @id
-  userId    String
-  expiresAt DateTime
-
-  user      User    @relation(references: [id], fields: [userId], onDelete: Cascade)
-  ipAddress String?
-  userAgent String?
-
-  @@map("session")
-}
-
-model Account {
-  id           String    @id
-  accountId    String
-  providerId   String
-  userId       String
-  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  accessToken  String?
-  refreshToken String?
-  idToken      String?
-  expiresAt    DateTime?
-  password     String?
-
-  @@map("account")
-}
-
-model Verification {
-  id         String   @id
-  identifier String
-  value      String
-  expiresAt  DateTime
-
-  @@map("verification")
-}
-
 model Recordings{
-  id              String   @id
-  video           String
-  userId          String
-  user            User   @relation(fields: [userId],references: [id],onDelete: Cascade)
-  createdAt       DateTime
-  @@index([video,userId])
+  id        String         @id
+  url       String
+  userId    String
+  user      User       @relation(fields: [userId],references: [id],onDelete: Cascade)
+  createdAt DateTime
+
+  @@unique([url])
 
 }
 

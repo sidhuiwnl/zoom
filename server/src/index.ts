@@ -1,16 +1,20 @@
 import ws from "ws";
 import express from "express";
+import {Request,Response} from "express";
 import cors from "cors";
 import * as http from "node:http";
 import {createRouteHandler} from "uploadthing/express";
 import { uploadRouter } from "./uploadthing";
 import { UTApi } from "uploadthing/server";
 import dotenv from "dotenv";
+import {prisma} from "./lib/prisma";
 
 dotenv.config();
 
 
 const app = express();
+app.use(express.json());
+
 app.use(
     "/api/uploadthing",
     createRouteHandler({
@@ -72,6 +76,61 @@ wss.on("connection", (socket) => {
 
     });
 });
+
+
+
+
+app.post("/addUser",async (req : Request,res : Response ) =>{
+    const userData = req.body;
+
+    if(!userData.id){
+        res.status(400).json({
+            message : "Unauthorised"
+        })
+        return
+    }
+
+
+
+    try{
+        const existingUser = await prisma.user.findUnique({
+            where : {
+                id : userData.id
+            }
+        })
+        if(existingUser){
+
+            res.status(400).json({
+                message : "User already exists"
+
+
+            })
+            return
+        }
+
+
+        const response = await prisma.user.create({
+            data : {
+                id : userData.id,
+                firstName : userData.firstName,
+                lastName : userData.lastName,
+                email : userData.email,
+                image : userData.image
+            }
+        })
+
+        res.status(200).json({
+            message : "User created"
+        })
+    }catch (error){
+       res.status(500).json({
+           message : "Internal server error"
+       })
+    }
+
+
+})
+
 
 
 
