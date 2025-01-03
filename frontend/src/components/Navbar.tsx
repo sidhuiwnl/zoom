@@ -7,8 +7,8 @@ export default function Navbar(){
                 <NavLink to={"/login"} className="text-sm">
                     About
                 </NavLink>
-                <NavLink to={"/login"} className="text-sm">
-                    About
+                <NavLink to={"/Add"} className="text-sm">
+                    Meet
                 </NavLink>
                 <NavLink to={"/login"} className="text-sm">
                     Login
