@@ -10,14 +10,6 @@
   "action": {
     "default_popup": "index.html",
     "default_title": "The Meeting Bot"
-  },
-  "permissions": ["identity"],
-  "background": {
-    "service_worker": "service-worker.js"
-  },
-  "content_security_policy": {
-    "extension_pages": "script-src 'self'; object-src 'self'; connect-src 'self' https://apis.google.com https://www.gstatic.com https://www.googleapis.com https://securetoken.googleapis.com; frame-src 'self' chrome-extension://kmfdgmohgodaalpgciffncnalbbhiifp"
   }
-
 
 }

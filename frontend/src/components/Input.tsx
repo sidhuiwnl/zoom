@@ -12,15 +12,15 @@ export default function InputDemo() {
         })
     }
     return (
-        <div className=" space-y-4 w-[500px] h-[150px] p-3">
-            <Label htmlFor="input-21" className="text-white">Add Meet Link</Label>
+        <div className=" space-y-6 w-[500px] h-[150px] p-3">
+            <Label htmlFor="input-21" className="text-white text-5xl">Add Meet Link...</Label>
             <div className="flex rounded-lg shadow-sm shadow-black/5 bg ">
                 <Input
                     onChange={(e) => {
                         e.preventDefault();
                         setLink(e.target.value)}}
                     id="input-21"
-                    className="-me-px flex-1 rounded-e-none bg-black text-white placeholder:text-white focus:border-white border-neutral-800 shadow-none focus-visible:z-10 "
+                    className="-me-px flex-1 py-2 rounded-e-none bg-black text-white placeholder:text-white focus:border-white border-neutral-800 shadow-none focus-visible:z-10 "
                     placeholder="Meet Link.."
                     type="email"
                 />
