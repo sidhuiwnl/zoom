@@ -1,5 +1,5 @@
 import { NavLink } from "react-router";
-import rdr2 from "../../public/videoplayback.mp4"
+
 
 export default function HomeSection() {
     return(
@@ -18,13 +18,13 @@ function VideoMonitor() {
     return (
         <div className="w-[900px] h-[400px] object-cover rounded-xl shadow-xl bg-white">
             <div className="w-full h-full">
-                <video
-                    className="w-full h-full rounded-xl object-cover"
-                    src={rdr2}
-                    autoPlay
-                    loop={true}
-                    muted
-                ></video>
+                {/*<video*/}
+                {/*    className="w-full h-full rounded-xl object-cover"*/}
+                {/*    src={rdr2}*/}
+                {/*    autoPlay*/}
+                {/*    loop={true}*/}
+                {/*    muted*/}
+                {/*></video>*/}
             </div>
         </div>
     );
