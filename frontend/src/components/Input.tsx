@@ -12,7 +12,7 @@ export default function InputDemo() {
         })
     }
     return (
-        <div className="roboto-medium space-y-4 w-[500px] h-[150px] p-3">
+        <div className=" space-y-4 w-[500px] h-[150px] p-3">
             <Label htmlFor="input-21" className="text-white">Add Meet Link</Label>
             <div className="flex rounded-lg shadow-sm shadow-black/5 bg ">
                 <Input
